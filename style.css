@@ -90,14 +90,15 @@ span{
 }
 
 section{
-  min-height: 100vh;
-  padding: 10rem 15%;
+  min-height: auto;
+  padding: 5rem 15%;
 }
 .home{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15rem;
+  padding-top: 20rem;
 }
 .home-content{
   display: flex;
@@ -198,7 +199,6 @@ section{
 .heading{
   text-align: center;
   font-size: 7rem;
-  margin: 5rem 0;
 }
 .services{
   background-color: var(--bg-color);

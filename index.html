@@ -25,11 +25,11 @@
 
         <nav class="navbar" id="navbar">
           <a href="" class="#adbout">Про автора</a>
-          <a href="" class="#books">Книги</a>
-          <a href="" class="#poetry">Поезія</a>
+          <a href="#books" class="#books">Книги</a>
+          <a href="#books" class="#poetry">Поезія</a>
         </nav>
 
-        <button class="gradient-btn">Придбати книги</button>
+        <button class="gradient-btn" onclick="window.location.href='#books'">Придбати книги</button>
     </header>
     <section class="home" id="home">
 
@@ -39,22 +39,22 @@
         <p>Сучасна лірика, фентезі, переплетенян сюжетів та строк: важкі характери, цікава драма. Читайте на кіндл, амазон і ютуб.</p>
 
         <div class="social-icons">  
-          <a href="#">
+          <a href="https://www.facebook.com/profile.php?id=100021698824579">
             <i class="bx bxl-facebook"></i>
           </a>
 
-           <a href="#">
+           <a href="https://www.instagram.com/_._andriyko_._/">
             <i class="bx bxl-instagram"></i>
           </a>
 
-           <a href="#">
+           <a href="https://www.youtube.com/@andrii_lisovyi">
             <i class="bx bxl-youtube"></i>
           </a>
         </div>
 
         <div class="btn-group">
-          <a href="#" class="btn">Проза</a>
-          <a href="#" class="btn">Поезія</a>
+          <a href="#books" class="btn">Проза</a>
+          <a href="javascript:void(0)" class="btn" onclick="openModal('modal1')">Поезія</a>
         </div>
       </div>
 
@@ -318,15 +318,15 @@
 
     <footer class="footer">
       <div class="social-icons">  
-          <a href="#">
+          <a href="https://www.facebook.com/profile.php?id=100021698824579">
             <i class="bx bxl-facebook"></i>
           </a>
 
-           <a href="#">
+           <a href="https://www.instagram.com/_._andriyko_._/">
             <i class="bx bxl-instagram"></i>
           </a>
 
-           <a href="#">
+           <a href="https://www.youtube.com/@andrii_lisovyi">
             <i class="bx bxl-youtube"></i>
           </a>
         </div>
@@ -336,7 +336,7 @@
             <a href="https://www.goodreads.com/author/show/51381651.Andrii_Lisovyi">Відгук на Goodreads</a>
           </li>
           <li>
-            <a href="#">Купити книги</a>
+            <a href="#books">Придбати книги</a>
           </li>
           <li>
             <a href="#">Про автора</a>
