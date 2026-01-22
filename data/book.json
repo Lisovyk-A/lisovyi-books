@@ -1,0 +1,22 @@
+{
+  "title": "Різдвяна історія",
+  "author": "Андрій Лісовий",
+  "cover": "img/cover2.jpg",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Палац",
+      "file": "chapters/01-prolog.md"
+    },
+    {
+      "id": 2,
+      "title": "Місто",
+      "file": "chapters/02-zymovyi-vechir.md"
+    },
+    {
+      "id": 2,
+      "title": "Час",
+      "file": "chapters/03.md"
+    }
+  ]
+}

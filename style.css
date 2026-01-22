@@ -653,10 +653,16 @@ section{
 .footer ul {
   text-align: center;
   font-size: 1.8rem;
+  gap: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
 }
 .footer ul li {
   display: inline-block;
-  margin-left: 20px;
+  margin: 0;
 }
 .footer ul li a {
   color: white;
