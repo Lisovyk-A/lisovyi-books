@@ -92,7 +92,7 @@ const App = {
   // ─── Book Loading ───
   async loadBook() {
     try {
-      const res = await fetch('data/book.json');
+      const res = await fetch('/data/book.json');
       if (!res.ok) throw new Error('book.json не знайдено');
       this.book = await res.json();
       
@@ -140,7 +140,7 @@ const App = {
     `;
     
     try {
-      const res = await fetch(`data/${ch.file}`);
+      const res = await fetch(`/data/${ch.file}`);
       if (!res.ok) throw new Error('Файл не знайдено');
       const markdown = await res.text();
       
@@ -263,7 +263,7 @@ const App = {
     // Завантажуємо текст якщо ще не завантажений
     if (this.el.copyrightContent.querySelector('.loading')) {
       try {
-        const res = await fetch('data/copyright.md');
+        const res = await fetch('/data/copyright.md');
         if (!res.ok) throw new Error();
         const text = await res.text();
         this.el.copyrightContent.innerHTML = this.parseMarkdown(text);

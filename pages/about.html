@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Про автора | Андрій Лісовий</title>
+    <link rel="stylesheet" href="../css/about.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Floating Quotes Background -->
+      <div class="floating-quotes">
+        <span class="float-quote"><i class='bx bx-pen'></i></span>
+        <span class="float-quote">!</i></span>
+        <span class="float-quote">Lisovyi</span>
+        <span class="float-quote"><i class='bx bx-feather'></i></span>
+        <span class="float-quote"><i class='bx bx-book'></i></span>
+        <span class="float-quote"><i class='bx bx-book'></i></span>
+        <span class="float-quote"><i class='bx bx-star'></i></span>
+        <span class="float-quote"><i class='bx bx-star'></i></span>
+      </div>
+      
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Про <span>автора</span></h1>
+          <p class="quote">
+            <i class='bx bxs-quote-left'></i>
+            І десь мудрець, десь ідіот, кому король – для кого блазень. Я не вино, щоб мати сорт. І не актор сценічних вражень. Я хтось для когось і собі: кую й скидаю сам кайдани. Так мало часу у добі – робить і гоїть власні рани.
+            <i class='bx bxs-quote-right'></i>
+          </p>
+          <p class="quote-source">Із вірша "Так хочу я споко́ю трохи" | 2024</p>
+        </div>
+        <div class="hero-image">
+          <img src="../img/about_main.jpg" alt="Андрій Лісовий">
+        </div>
+      </div>
+    </section>
+
+    <!-- Biography Section -->
+    <section class="biography">
+      <div class="bio-container">
+        <h2 class="section-title">Біографія</h2>
+        
+        <div class="bio-content">
+          <p>
+            Український автор, дизайнер і медійник. Народився 9 січня 2003 року в місті Сміла. Навчався на історичному факультеті, а згодом в Інституті Журналістики КНУ. Працює у сфері дизайну та візуального сторітелінгу, працював комунікаційником в Українському культурному фонді, редактором і журналістом на Телеканалах "Прямий" та Новини.LIVE, автор ютуб-проєкту PRO історію.
+          </p>
+          <p>
+            Пише з дитинства. До поезії повернувся у час студентських років. Його тексти поєднують особисте й філософське, ніжні та провокаційні образи, пошук сенсу, щирість без прикрас.
+          </p>
+          <p>
+            За 2021–2024 роки він створив понад сотню віршів, які увійшли до його першої збірки "Не гасла лампа біля столу", яка побачила світ у 2025 році.
+          </p>
+          <p>
+            Андрій володіє англійською та українською мовами, вивчає німецьку. Цікавиться історією та геральдикою (у 2018 році зареєстрував особовий герб в Українському геральдичному товаристві), одружений із Ольгою Лісовою.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+      <h2 class="section-title">Творчий шлях</h2>
+      
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2018</span>
+            <h3>Перша публікація</h3>
+            <p>На принтері у смілянському ліцеї було надруковано першу редакцію "Різдвяної історії" – як подарунок для вчителів та сім'ї на Новорічні свята.</p>
+            <div class="timeline-book" onclick="openModal('modal2')">
+              <img src="../img/cover2.jpg" alt="Різдвяна історія">
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2020</span>
+            <h3>Започатковано телеграм-канал</h3>
+            <p>В ранні університетські роки почав вести телеграм-канал "Не гасне лампа біля столу" – спочатку як простір для натхнення, а пізніше як сховище і площадка для власних віршів.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2025</span>
+            <h3>Поетична збірка</h3>
+            <p>У грудні 2025 року друком виходить збірка поезій "Не гасла лампа біля столу" – понад 130 поезій зібраних за п'ять років творчості.</p>
+            <div class="timeline-book" onclick="openModal('modal1')">
+              <img src="../img/cover1.jpg" alt="Не гасла лампа біля столу">
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2026</span>
+            <h3>Новелла</h3>
+            <p>Очікується вихід "Пригоди Тона і Скона" — перший прозований твір автора у стилі темного фентезі</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">      
+      <div class="gallery-masonry">
+        <div class="gallery-item tall">
+          <img src="../img/about_img1.jpg" alt="Фото 1">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Родинний герб Лісових</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../img/about_img3.jpg" alt="Фото 2">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Учасник міжнародного проєкту | Erasmus 2018</span>
+          </div>
+        </div>
+        <div class="gallery-item tall">
+          <img src="../img/about_img2.jpg" alt="Фото 3">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Презентація збірки "Не гасла лампа біля столу" | 2025 </span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../img/about_img5.jpg" alt="Фото 4">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Робота комунікаційним менеджером Українського культурного фонду | 2023</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../img/about_img6.jpg" alt="Фото 5">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">На протестах проти ліквідації НАБУ і САП | 2025 </span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../img/about_img7.jpg" alt="Фото 6">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">Родинна подорож до Кельну | 2026</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../img/about_img4.jpg" alt="Фото 7">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">З татом | 2007</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="social-icons">  
+        <a href="https://www.facebook.com/profile.php?id=100021698824579">
+          <i class="bx bxl-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/_._andriyko_._/">
+          <i class="bx bxl-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@andrii_lisovyi">
+          <i class="bx bxl-youtube"></i>
+        </a>
+      </div>
+
+      <ul class="list">
+        <li>
+          <a href="https://www.goodreads.com/author/show/51381651.Andrii_Lisovyi">Відгук на Goodreads</a>
+        </li>
+        <li>
+          <a href="../index.html#books">Придбати книги</a>
+        </li>
+        <li>
+          <a href="about.html">Про автора</a>
+        </li>
+      </ul>
+
+      <p class="copyright">
+        © Andrii Lisovyi
+      </p>
+    </footer>
+
+    <script src="../js/header.js"></script>
+    <script src="../js/modals.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
