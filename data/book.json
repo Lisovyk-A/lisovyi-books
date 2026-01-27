@@ -5,18 +5,38 @@
   "chapters": [
     {
       "id": 1,
-      "title": "Палац",
+      "title": "Частина 1",
       "file": "chapters/01-prolog.md"
     },
     {
       "id": 2,
-      "title": "Місто",
+      "title": "Частина 2",
       "file": "chapters/02-zymovyi-vechir.md"
     },
     {
       "id": 3,
-      "title": "Час",
+      "title": "Частина 3",
       "file": "chapters/03.md"
+    },
+    {
+      "id": 4,
+      "title": "Частина 4",
+      "file": "chapters/04.md"
+    },
+    {
+      "id": 5,
+      "title": "Частина 5",
+      "file": "chapters/05.md"
+    },
+    {
+      "id": 6,
+      "title": "Частина 6",
+      "file": "chapters/06.md"
+    },
+    {
+      "id": 7,
+      "title": "Частина 7",
+      "file": "chapters/07.md"
     }
   ]
 }
