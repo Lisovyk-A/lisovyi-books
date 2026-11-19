@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="dark">
+<head>
+  <!-- Позначаємо, що JS працює — лише тоді вмикаємо анімацію появи.
+       Без JS увесь контент лишається видимим. -->
+  <script>
+    document.documentElement.className += ' js';
+    document.addEventListener('DOMContentLoaded', () => {
+      const $ = (s) => document.querySelector(s);
+
+      $('#year').textContent = new Date().getFullYear();
+
+      // День / ніч
+      const root = document.documentElement;
+      $('#toggle').addEventListener('click', () => {
+        root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+      });
+
+      // Хедер при скролі
+      const header = $('#header');
+      addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 40));
+
+      // Мобільне меню
+      const nav = $('#nav');
+      $('#burger').addEventListener('click', () => nav.classList.toggle('open'));
+      document.querySelectorAll('#links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+      // Поява блоків
+      const io = new IntersectionObserver((es) => es.forEach((e, i) => {
+        if (e.isIntersecting) { e.target.style.transitionDelay = (i % 3) * .08 + 's'; e.target.classList.add('in'); io.unobserve(e.target); }
+      }, { threshold: .15 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      // Кастомний курсор
+      const cursor = $('#cursor');
+      if (matchMedia('(hover: hover)').matches) {
+        addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+        document.querySelectorAll('a, button, .book').forEach(el => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+        });
+      }
+    });
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Андрій Лісовий — поезія та проза</title>
+  <meta name="description" content="Андрій Лісовий — поет і письменник. Сучасна лірика, фентезі, переплетення сюжетів." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Андрій Лісовий — поезія та проза" />
+  <meta property="og:description" content="Сучасна лірика, фентезі, переплетення сюжетів." />
+  <meta property="og:image" content="img/banner1.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:     #0b0b0d;
+      --surface:#141417;
+      --ink:    #f5f2ec;
+      --muted:  #8e8b86;
+      --line:   rgba(245,242,236,0.12);
+      --accent: #ff5b23;
+      --accent-ink: #0b0b0d;
+
+      --display: "Unbounded", system-ui, sans-serif;
+      --sans: "Manrope", system-ui, sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    [data-theme="light"] {
+      --bg:     #efece3;
+      --surface:#e3dfd3;
+      --ink:    #161310;
+      --muted:  #6c675e;
+      --line:   rgba(22,19,16,0.14);
+      --accent: #ff4d18;
+      --accent-ink: #fffaf4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-weight: 400; line-height: 1.55;
+      overflow-x: hidden; transition: background .5s var(--ease), color .5s var(--ease);
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    .wrap { padding-inline: clamp(1.25rem, 5vw, 5rem); }
+
+    /* ── Кастомний курсор ── */
+    .cursor { position: fixed; top: 0; left: 0; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); pointer-events: none; z-index: 9999; transform: translate(-50%,-50%);
+      transition: width .25s var(--ease), height .25s var(--ease); mix-blend-mode: difference; }
+    .cursor.big { width: 56px; height: 56px; background: #fff; }
+    @media (hover: none) { .cursor { display: none; } }
+
+    /* ── Хедер ── */
+    .header { position: fixed; inset: 0 0 auto 0; z-index: 200; display: flex; align-items: center;
+      justify-content: space-between; padding: 1.6rem clamp(1.25rem,5vw,5rem); transition: background .4s, border-color .4s; border-bottom: 1px solid transparent; }
+    .header.scrolled { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .brand { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; color:#fff; }
+    .header.scrolled .brand { color: var(--ink); }
+    .brand b { color: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 2.2rem; }
+    .nav .links { display: flex; gap: 2.2rem; }
+    .nav a { font-size: .82rem; font-weight: 600; color: #cfccc6; transition: color .3s; }
+    .header.scrolled .nav a { color: var(--muted); }
+    .nav a:hover { color: var(--accent); }
+    .toggle { width: 44px; height: 26px; border-radius: 20px; border: 1px solid rgba(255,255,255,.3);
+      background: transparent; position: relative; cursor: pointer; flex: 0 0 auto; }
+    .header.scrolled .toggle { border-color: var(--line); }
+    .toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px;
+      border-radius: 50%; background: var(--accent); transition: transform .35s var(--ease); }
+    [data-theme="light"] .toggle::after { transform: translateX(18px); }
+
+    /* Бургер — лише на мобільному */
+    .burger { display: none; flex-direction: column; gap: 5px; width: 30px; height: 30px;
+      background: transparent; border: 0; cursor: pointer; padding: 0; align-items: center; justify-content: center; }
+    .burger span { display: block; width: 24px; height: 2px; background: currentColor; transition: transform .3s var(--ease), opacity .3s; }
+    .nav.open .burger span:first-child { transform: translateY(3.5px) rotate(45deg); }
+    .nav.open .burger span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+    /* ── Hero з атмосферним фоном ── */
+    .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding-bottom: clamp(3rem, 8vh, 6rem); padding-top: 8rem; overflow: hidden; color: #fff; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%;
+      animation: kenburns 26s ease-in-out infinite alternate; }
+    @keyframes kenburns { from { transform: scale(1.06); } to { transform: scale(1.2); } }
+    .hero-bg::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,11,13,.55) 0%, rgba(11,11,13,.35) 40%, rgba(11,11,13,.92) 100%); }
+    .hero-inner { position: relative; z-index: 1; }
+
+    .kicker { font-size: .82rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+    .giant { font-family: var(--display); font-weight: 800; line-height: .9; letter-spacing: -.03em;
+      font-size: clamp(3.6rem, 14vw, 13rem); text-transform: uppercase; margin: 1.4rem 0 1.4rem; }
+    .hero-lead { max-width: 46ch; color: #d8d5cf; font-size: clamp(1.05rem, 1.5vw, 1.3rem); }
+    .hero-actions { display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap; }
+    .btn { font-family: var(--display); font-weight: 600; font-size: .92rem; padding: 1rem 2rem; border-radius: 100px;
+      transition: transform .3s var(--ease), background .3s, color .3s; }
+    .btn-solid { background: var(--accent); color: #0b0b0d; }
+    .btn-solid:hover { transform: translateY(-3px); }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+    .btn-ghost:hover { background: #fff; color: #0b0b0d; }
+
+    /* ── Книги ── */
+    .section { padding-block: clamp(4rem, 10vh, 8rem); }
+    .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap; margin-bottom: 3.5rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
+    .sec-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem,6vw,4.5rem);
+      letter-spacing: -.03em; text-transform: uppercase; }
+    .sec-head .meta { font-size: .82rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); text-transform: uppercase; }
+
+    .books { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
+    .book { position: relative; }
+    .book .num { font-family: var(--display); font-weight: 700; font-size: .9rem; color: var(--accent); }
+    .cover { position: relative; aspect-ratio: 3/4; overflow: hidden; margin: 1rem 0 1.4rem; background: var(--surface); }
+    .cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+    .book:hover .cover img { transform: scale(1.06); }
+    .cover .go { position: absolute; inset: auto 0 0 0; transform: translateY(100%);
+      background: var(--accent); color: var(--accent-ink); font-family: var(--display); font-weight: 600; font-size: .82rem;
+      letter-spacing: .04em; text-transform: uppercase; padding: 1rem; text-align: center; transition: transform .4s var(--ease); }
+    .book:hover .cover .go { transform: none; }
+    .book .tag { font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .book h3 { font-family: var(--display); font-weight: 600; font-size: clamp(1.4rem,2.2vw,1.9rem);
+      letter-spacing: -.02em; margin: .5rem 0 .7rem; line-height: 1.05; }
+    .book p { color: var(--muted); font-size: .95rem; }
+
+    /* ── CTA смуга ── */
+    .cta { background: var(--accent); color: var(--accent-ink); }
+    .cta .inner { padding-block: clamp(4rem,10vh,7rem); display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; }
+    .cta h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem,7vw,6rem);
+      line-height: .95; letter-spacing: -.03em; text-transform: uppercase; max-width: 16ch; }
+    .cta a.btn2 { display: inline-flex; align-items: center; gap: .8rem; background: var(--accent-ink); color: var(--accent);
+      font-family: var(--display); font-weight: 700; font-size: 1rem; padding: 1.1rem 2.2rem; border-radius: 100px;
+      transition: transform .3s var(--ease); }
+    .cta a.btn2:hover { transform: translateX(6px); }
+
+    /* ── Футер ── */
+    .footer { padding-block: 4rem 2.5rem; }
+    .footer .row { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; align-items: flex-end; }
+    .footer .big { font-family: var(--display); font-weight: 700; font-size: clamp(2rem,5vw,3.5rem); letter-spacing: -.03em; text-transform: uppercase; }
+    .footer .socials { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .footer .socials a { font-size: .85rem; font-weight: 600; color: var(--muted); transition: color .3s; }
+    .footer .socials a:hover { color: var(--accent); }
+    .footer .copyright { margin-top: 3rem; font-size: .78rem; color: var(--muted); letter-spacing: .04em; }
+
+    /* ── Reveal (лише коли є JS; інакше контент видимий) ── */
+    .js .reveal { opacity: 0; transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero-bg img { animation: none; }
+    }
+
+    @media (max-width: 860px) {
+      .cursor { display: none; }
+      .burger { display: flex; color: #fff; }
+      .header.scrolled .burger { color: var(--ink); }
+      .nav { gap: 1.2rem; }
+      .nav .links { position: fixed; inset: 72px 0 auto 0; flex-direction: column; gap: 0;
+        background: color-mix(in srgb, var(--bg) 96%, transparent); backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line); padding: 1rem clamp(1.25rem,5vw,5rem) 1.6rem;
+        transform: translateY(-12px); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease), transform .3s var(--ease); }
+      .nav.open .links { transform: none; opacity: 1; pointer-events: auto; }
+      .nav .links a { color: var(--ink); font-size: 1.1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+      .books { grid-template-columns: 1fr; max-width: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+
+  <header class="header" id="header">
+    <a href="#" class="brand">АНДРІЙ <b>ЛІСОВИЙ</b></a>
+    <nav class="nav" id="nav">
+      <span class="links" id="links">
+        <a href="#books">Книги</a>
+        <a href="pages/about.html">Автор</a>
+        <a href="#cta">Придбати</a>
+      </span>
+      <button class="toggle" id="toggle" aria-label="День / ніч"></button>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-bg"><img src="img/banner1.jpg" alt="" /></div>
+    <div class="hero-inner wrap">
+      <p class="kicker reveal">Поет · письменник</p>
+      <h1 class="giant reveal">Лісовий</h1>
+      <p class="hero-lead reveal">Сучасна лірика, фентезі та переплетення сюжетів. Важкі характери, виклики й неочікувані розв'язки — книги, що читаються повільно й залишаються надовго.</p>
+      <div class="hero-actions reveal">
+        <a href="#books" class="btn btn-solid">Читати прозу</a>
+        <a href="#books" class="btn btn-ghost">Поезія</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Книги одразу після хіро ── -->
+  <section class="section wrap" id="books">
+    <div class="sec-head">
+      <h2 class="reveal">Книги</h2>
+      <span class="meta reveal">03 видання · 2024—2025</span>
+    </div>
+
+    <div class="books">
+      <article class="book reveal">
+        <span class="num">01</span>
+        <div class="cover">
+          <img src="img/cover2.jpg" alt="Зимова історія" />
+          <a href="pages/reader.html" class="go">Читати онлайн</a>
+        </div>
+        <span class="tag">Повість · фентезі</span>
+        <h3>Зимова історія</h3>
+        <p>Принцеса тікає з золотої клітки, а хлопець ховає правду разом із королівською родиною. Про свободу, зраду й кохання, що приходить надто пізно.</p>
+      </article>
+
+      <article class="book reveal">
+        <span class="num">02</span>
+        <div class="cover">
+          <img src="img/cover1.jpg" alt="Не гасла лампа біля столу" />
+          <a href="https://secure.wayforpay.com/payment/sa7a487e7159a" class="go">Придбати книгу</a>
+        </div>
+        <span class="tag">Поетична збірка · 2025</span>
+        <h3>Не гасла лампа біля столу</h3>
+        <p>Понад 130 віршів найяскравіших молодих років. Кохання, романтизування життя, філософія та іронія в кожному рядку.</p>
+      </article>
+
+      <article class="book reveal">
+        <span class="num">03</span>
+        <div class="cover">
+          <img src="img/cover3.jpg" alt="Пригоди Тона і Скона" />
+          <a href="#" class="go">Скоро</a>
+        </div>
+        <span class="tag">Роман · у роботі</span>
+        <h3>Пригоди Тона і Скона</h3>
+        <p>Один вірить, що справедливість має обличчя. Інший знає ціну кожного слова. Війна починається не на полі бою — а між двома боками одного шраму.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta" id="cta">
+    <div class="inner wrap">
+      <h2 class="reveal">Читай те, що залишається надовго</h2>
+      <a href="https://secure.wayforpay.com/payment/sa7a487e7159a" class="btn2 reveal">Придбати збірку →</a>
+    </div>
+  </section>
+
+  <!-- ── Футер ── -->
+  <footer class="footer wrap">
+    <div class="row">
+      <span class="big reveal">Лісовий</span>
+      <nav class="socials reveal">
+        <a href="https://www.instagram.com/_._andriyko_._/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@andrii_lisovyi" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/profile.php?id=100021698824579" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.goodreads.com/author/show/51381651.Andrii_Lisovyi" target="_blank" rel="noopener">Goodreads</a>
+        <a href="pages/about.html">Про автора</a>
+      </nav>
+    </div>
+    <p class="copyright">© <span id="year"></span> Andrii Lisovyi</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const root = document.documentElement;
+    document.getElementById('toggle').addEventListener('click', () => {
+      root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    });
+
+    const header = document.getElementById('header');
+    addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 40));
+
+    // Мобільне меню
+    const nav = document.getElementById('nav');
+    document.getElementById('burger').addEventListener('click', () => nav.classList.toggle('open'));
+    document.querySelectorAll('#links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    const io = new IntersectionObserver((es) => es.forEach((e, i) => {
+      if (e.isIntersecting) { e.target.style.transitionDelay = (i % 3) * .08 + 's'; e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const cursor = document.getElementById('cursor');
+    if (matchMedia('(hover: hover)').matches) {
+      addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      document.querySelectorAll('a, button, .book').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+      });
+    }
+  </script>
+</body>
+</html>
